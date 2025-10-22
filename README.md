@@ -19,7 +19,7 @@
 You can install it directly from GitHub:
 
 ```bash
-pip install git+https://github.com/vahid2510/Mechanical_Engineering_python.git
+pip install git+https://github.com/vahid2510/Book.git
 ```
 
 Or clone the repository and install manually:
