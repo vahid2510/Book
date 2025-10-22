@@ -25,7 +25,7 @@ pip install git+https://github.com/vahid2510/Mechanical_Engineering_python.git
 Or clone the repository and install manually:
 
 ```bash
-git clone https://github.com/vahid2510/Mechanical_Engineering_python.git
+git clone https://github.com/vahid2510/Book.git
 cd Mechanical_Engineering_python
 pip install -e .
 ```
@@ -72,7 +72,7 @@ Errors, results, and text outputs are all captured and displayed neatly. Non-tex
 ## 🧩 Folder Structure
 
 ```
-Mechanical_Engineering_python/
+Book/
 ├── pyproject.toml
 ├── README.md
 ├── LICENSE
@@ -159,7 +159,7 @@ Developed as a teaching aid for Mechanical Engineering students learning Python 
 You can make your notebooks run online via [MyBinder](https://mybinder.org):
 
 ```markdown
-[![Open In Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/vahid2510/Mechanical_Engineering_python/main?labpath=src/Mechanical_Engineering_python/notebooks/course.ipynb)
+[![Open In Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/vahid2510/Book/main?labpath=src/Mechanical_Engineering_python/notebooks/course.ipynb)
 ```
 
 Clicking the badge will open your notebook interactively online.
