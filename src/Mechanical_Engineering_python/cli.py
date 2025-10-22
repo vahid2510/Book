@@ -1,9 +1,17 @@
-
 from __future__ import annotations
+
+# ➊ افزوده شود:
+import sys, asyncio
+if sys.platform.startswith("win"):
+    try:
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+    except Exception:
+        pass
 
 import argparse
 from pathlib import Path
 from typing import Optional
+
 
 import nbformat
 from nbclient import NotebookClient
