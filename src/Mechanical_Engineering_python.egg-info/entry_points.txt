@@ -1,0 +1,2 @@
+[console_scripts]
+mech-eng = Mechanical_Engineering_python.cli:main

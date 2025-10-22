@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+src/Mechanical_Engineering_python/__init__.py
+src/Mechanical_Engineering_python/cli.py
+src/Mechanical_Engineering_python.egg-info/PKG-INFO
+src/Mechanical_Engineering_python.egg-info/SOURCES.txt
+src/Mechanical_Engineering_python.egg-info/dependency_links.txt
+src/Mechanical_Engineering_python.egg-info/entry_points.txt
+src/Mechanical_Engineering_python.egg-info/requires.txt
+src/Mechanical_Engineering_python.egg-info/top_level.txt
+src/Mechanical_Engineering_python/notebooks/course.ipynb
