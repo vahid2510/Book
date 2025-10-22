@@ -7,11 +7,54 @@ from typing import Optional
 
 import nbformat
 from nbclient import NotebookClient
+from jupyter_client.kernelspec import KernelSpecManager, NoSuchKernel
 from rich.console import Console
 from rich.panel import Panel
 from rich.rule import Rule
 
 console = Console()
+
+
+def _resolve_kernel_name(nb, requested: Optional[str]) -> str:
+    """Determine a usable kernel name."""
+    ksm = KernelSpecManager()
+
+    def is_available(name: Optional[str]) -> bool:
+        if not name:
+            return False
+        try:
+            ksm.get_kernel_spec(name)
+        except NoSuchKernel:
+            return False
+        return True
+
+    if requested:
+        if is_available(requested):
+            return requested
+        console.print(f"[yellow]Kernel '{requested}' not found. Trying alternatives.[/yellow]")
+
+    meta_kernel = (
+        nb.metadata.get("kernelspec", {}).get("name")
+        if hasattr(nb, "metadata")
+        else None
+    )
+    if is_available(meta_kernel):
+        return meta_kernel  # honour notebook preference
+
+    default_kernel = getattr(ksm, "default_kernel_name", None)
+    if is_available(default_kernel):
+        console.print(f"[yellow]Using default kernel '{default_kernel}'.[/yellow]")
+        return default_kernel
+
+    all_specs = ksm.get_all_specs()
+    if all_specs:
+        fallback = next(iter(all_specs))
+        console.print(f"[yellow]Falling back to available kernel '{fallback}'.[/yellow]")
+        return fallback
+
+    raise RuntimeError(
+        "No Jupyter kernels are installed. Install one with 'python -m ipykernel install --user'."
+    )
 
 
 def execute_notebook(nb_path: Path, timeout: int = 180, kernel_name: Optional[str] = None) -> int:
@@ -22,15 +65,35 @@ def execute_notebook(nb_path: Path, timeout: int = 180, kernel_name: Optional[st
     console.print(Panel.fit(f"Running notebook:\n[bold]{nb_path}[/bold]", border_style="green"))
 
     nb = nbformat.read(nb_path, as_version=4)
+    try:
+        resolved_kernel = _resolve_kernel_name(nb, kernel_name)
+    except RuntimeError as exc:
+        console.print(Panel(str(exc), title="kernel error", border_style="red"))
+        return 3
+
     client = NotebookClient(
         nb,
         timeout=timeout,
-        kernel_name=kernel_name or "python3",
+        kernel_name=resolved_kernel,
         allow_errors=True,
         record_timing=False
     )
-    client.execute()
+    try:
+        client.execute()
+    except NoSuchKernel:
+        console.print(
+            Panel(
+                f"Kernel '{resolved_kernel}' is not available. Install ipykernel for this Python environment.",
+                title="kernel error",
+                border_style="red"
+            )
+        )
+        return 3
+    except Exception as exc:  # pragma: no cover - best effort safety
+        console.print(Panel(str(exc), title="execution error", border_style="red"))
+        return 4
 
+    had_errors = False
     for i, cell in enumerate(nb.cells):
         if cell.cell_type != "code":
             continue
@@ -57,9 +120,10 @@ def execute_notebook(nb_path: Path, timeout: int = 180, kernel_name: Optional[st
                 tb = "\n".join(out.get("traceback", []))
                 msg = f"{ename}: {evalue}\n{tb}"
                 console.print(Panel(msg, title="error", border_style="red"))
+                had_errors = True
 
     console.print(Panel.fit("[bold green]Done.[/bold green]"))
-    return 0
+    return 1 if had_errors else 0
 
 
 def main():
