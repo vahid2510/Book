@@ -1,0 +1,39 @@
+
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Mechanical_Engineering_python"
+version = "0.1.0"
+description = "Run a bundled Jupyter notebook as a CLI course for Mechanical Engineering."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Your Name", email = "you@example.com"}]
+license = {text = "MIT"}
+keywords = ["python", "mechanical engineering", "notebook", "education"]
+
+dependencies = [
+  "nbformat>=5.10",
+  "nbclient>=0.9",
+  "rich>=13.7",
+  "numpy>=1.26",
+  "sympy>=1.12",
+  "matplotlib>=3.8",
+  "scipy>=1.11",
+  "pint>=0.23"
+]
+
+[project.urls]
+Homepage = "https://github.com/<username>/Mechanical_Engineering_python"
+Repository = "https://github.com/<username>/Mechanical_Engineering_python"
+Issues = "https://github.com/<username>/Mechanical_Engineering_python/issues"
+
+[project.scripts]
+mech-eng = "Mechanical_Engineering_python.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.package-data]
+"Mechanical_Engineering_python" = ["notebooks/*.ipynb"]
