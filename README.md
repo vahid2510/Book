@@ -159,7 +159,7 @@ Developed as a teaching aid for Mechanical Engineering students learning Python 
 You can make your notebooks run online via [MyBinder](https://mybinder.org):
 
 ```markdown
-[MyBinder](https://mybinder.org):vahid2510/Book/main?labpath=src/Mechanical_Engineering_python/notebooks/course.ipynb
+vahid2510/Book/main?labpath=src/Mechanical_Engineering_python/notebooks/course.ipynb
 ```
 
 Clicking the badge will open your notebook interactively online.
