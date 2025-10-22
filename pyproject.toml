@@ -13,7 +13,10 @@ authors = [{name = "Your Name", email = "you@example.com"}]
 license = {text = "MIT"}
 keywords = ["python", "mechanical engineering", "notebook", "education"]
 
+
 dependencies = [
+  "jupyter>=1.0.0",
+  "notebook>=7.0.0",
   "nbformat>=5.10",
   "nbclient>=0.9",
   "rich>=13.7",
@@ -23,6 +26,7 @@ dependencies = [
   "scipy>=1.11",
   "pint>=0.23"
 ]
+
 
 [project.urls]
 Homepage = "https://github.com/<username>/Mechanical_Engineering_python"
