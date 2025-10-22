@@ -1,6 +1,6 @@
 # Mechanical_Engineering_python
 
-**Mechanical_Engineering_python** is a Python package designed to help mechanical engineering students learn Python programming through interactive Jupyter notebooks. Once installed, it allows you to run bundled course notebooks directly from the command line.
+**Mechanical_Engineering_python** is a Python package designed to help mechanical engineering students learn Python programming through interactive Jupyter notebooks. Once installed, it allows you to run bundled course notebooks directly from the command line.written by vahid ahmadi khorami.
 
 ---
 
@@ -25,7 +25,7 @@ pip install git+https://github.com/vahid2510/Mechanical_Engineering_python.git
 Or clone the repository and install manually:
 
 ```bash
-git clone https://github.com/<username>/Mechanical_Engineering_python.git
+git clone https://github.com/vahid2510/Mechanical_Engineering_python.git
 cd Mechanical_Engineering_python
 pip install -e .
 ```
@@ -84,7 +84,6 @@ Mechanical_Engineering_python/
             └── course.ipynb
 ```
 
-Replace `course.ipynb` with your own course notebook. You can include multiple notebooks inside the `notebooks` folder.
 
 ---
 
@@ -160,7 +159,7 @@ Developed as a teaching aid for Mechanical Engineering students learning Python 
 You can make your notebooks run online via [MyBinder](https://mybinder.org):
 
 ```markdown
-[![Open In Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/<username>/Mechanical_Engineering_python/main?labpath=src/Mechanical_Engineering_python/notebooks/course.ipynb)
+[![Open In Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/vahid2510/Mechanical_Engineering_python/main?labpath=src/Mechanical_Engineering_python/notebooks/course.ipynb)
 ```
 
 Clicking the badge will open your notebook interactively online.
